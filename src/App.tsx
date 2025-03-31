@@ -5,8 +5,8 @@ import { ChatMessage, getAIResponse, getInvestmentProfile } from './utils';
 function App() {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
-      type: 'ai',
-      content: '안녕하세요! 저는 당신의 투자 성향을 분석하는 AI 어시스턴트입니다. 먼저, 투자 경험이 있으신가요?'
+      type: 'ai' as const,
+      content: '안녕하세요! 저는 당신의 부동산 투자 성향을 분석하는 AI 어시스턴트입니다. 먼저, 부동산 투자 경험이 있으신가요?'
     }
   ]);
   const [input, setInput] = useState('');
@@ -20,7 +20,7 @@ function App() {
 
     const newMessages = [
       ...messages,
-      { type: 'user', content: input }
+      { type: 'user' as const, content: input }
     ];
     setMessages(newMessages);
     setInput('');
@@ -28,7 +28,7 @@ function App() {
     // Simulate AI response
     const aiResponse = getAIResponse(input);
     setTimeout(() => {
-      setMessages([...newMessages, { type: 'ai', content: aiResponse }]);
+      setMessages([...newMessages, { type: 'ai' as const, content: aiResponse }]);
     }, 1000);
 
     // After 3 messages, show analysis
@@ -43,13 +43,13 @@ function App() {
   };
 
   const handleRecommendations = () => {
-    alert('매물 추천 기능은 현재 개발 중입니다.');
+    window.open('https://open.kakao.com/o/stotlsmh', '_blank');
   };
 
   const resetTest = () => {
     setMessages([{
-      type: 'ai',
-      content: '안녕하세요! 저는 당신의 투자 성향을 분석하는 AI 어시스턴트입니다. 먼저, 투자 경험이 있으신가요?'
+      type: 'ai' as const,
+      content: '안녕하세요! 저는 당신의 부동산 투자 성향을 분석하는 AI 어시스턴트입니다. 먼저, 부동산 투자 경험이 있으신가요?'
     }]);
     setAnalysis(null);
     setShowResults(false);
@@ -78,8 +78,8 @@ function App() {
             <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-12 relative overflow-hidden">
               <div className="absolute inset-0 bg-grid-white/10"></div>
               <div className="relative">
-                <h2 className="text-4xl font-bold mb-3 text-white">당신의 투자 프로필</h2>
-                <p className="text-blue-100 text-lg">AI가 분석한 맞춤형 투자 성향 보고서</p>
+                <h2 className="text-4xl font-bold mb-3 text-white">당신의 부동산 투자 프로필</h2>
+                <p className="text-blue-100 text-lg">AI가 분석한 맞춤형 부동산 투자 성향 보고서</p>
               </div>
             </div>
             
@@ -118,7 +118,7 @@ function App() {
                 >
                   <div className="relative flex items-center justify-center gap-3">
                     <Building className="w-7 h-7 text-white" />
-                    <span className="text-xl font-semibold text-white">투자 성향에 맞는 매물 추천받기</span>
+                    <span className="text-xl font-semibold text-white">부동산 투자 매물 상담 받기</span>
                   </div>
                   <div className="absolute inset-0 bg-white/20 transition-transform duration-300 group-hover:scale-[2] group-hover:opacity-0"></div>
                 </button>
@@ -157,11 +157,11 @@ function App() {
               </h1>
             </div>
             <p className="text-3xl text-gray-600 mb-8">
-              AI가 분석하는 당신만의 투자 성향 프로파일
+              AI가 분석하는 당신만의 부동산 투자 성향 프로파일
             </p>
             <p className="text-xl text-gray-500 mb-12 leading-relaxed">
-              5분 만에 완성하는 과학적 투자 성향 분석으로<br />
-              당신에게 가장 적합한 투자 전략을 발견하세요
+              5분 만에 완성하는 과학적 부동산 투자 성향 분석으로<br />
+              당신에게 가장 적합한 부동산 투자 전략을 발견하세요
             </p>
             <button
               onClick={() => setShowChat(true)}
